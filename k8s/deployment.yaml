@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memory-leak-service
+  labels:
+    app: memory-leak-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: memory-leak-service
+  template:
+    metadata:
+      labels:
+        app: memory-leak-service
+    spec:
+      containers:
+        - name: memory-leak-service
+          image: nikhilmourya36/devops-memory-leak-microservice-challenge:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
